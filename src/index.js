@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 const app = express();
 import router from './router';
+// @ts-ignore
+import cors from 'cors';
 
 //DB Setup
 mongoose.connect('mongodb://localhost/auth');
@@ -17,6 +19,7 @@ console.log(`Server is listening on PORT ${port}`);
 
 //App SetUp
 app.use(morgan('combined')); //Morgan is a logging framework
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*' })); //parses a request into json
 //Incoming request are passed into bodyParser and morgan middleware.
 //Nodemon watches the file for file changes.
